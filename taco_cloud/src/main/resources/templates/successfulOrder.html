@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Received Order</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+
+<body>
+<h2>Order has been sent successfully</h2>
+
+<p>Click below to try to receive the message</p>
+<a th:href="@{/mq/receive}">HERE</a>
+</body>
+</html>

@@ -1,0 +1,51 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${other.eureka.host}:${other.eureka.port}/eureka
+spring:
+  application:
+    name: SERVERREGISTRY
+---
+spring:
+  config:
+    activate:
+      on-profile: eureka-1
+  application:
+    name: eureka-1
+
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: eureka1.tacocloud.com #тут должен быть настоящий URL сервера, на котором работает эта эврика, но у нас просто заглушка, которая пока никак не влияет
+
+  #эта штука ответственная за вкладку DS Replicas (поиск реплик из другого сервера).
+  #тут вместо локалхоста и должен быть URL нашего второго сервера (eureka2), но поскольку он у нас заглушка, то его мы игнорим и оставляем локалхост
+other:
+  eureka:
+    host: localhost
+    port: 8762
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: eureka-2
+  application:
+    name: eureka-2
+
+server:
+  port: 8762
+
+eureka:
+  instance:
+    hostname: eureka2.tacocloud.com #тут должен быть настоящий URL сервера, на котором работает эта эврика, но у нас просто заглушка, которая пока никак не влияет
+
+  #эта хуйня ответственная за вкладку DS Replicas (поиск реплик из другого сервера).
+  #тут вместо локалхоста и должен быть URL нашего второго сервера (eureka1), но поскольку он у нас заглушка, то его мы игнорим и оставляем локалхост
+other:
+  eureka:
+    host: localhost
+    port: 8761

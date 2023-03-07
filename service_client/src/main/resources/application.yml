@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: taco-service
+  cloud:
+    config:
+      discovery:
+        service-id: CONFIGSERVER
+#  config:
+#    import: optional:configserver:http://localhost:8888
+
+  boot:
+    admin:
+      client:
+        url: http://localhost:9090/
+        instance:
+          metadata:
+            user-name: ${spring.security.user.name}
+            user-password: ${spring.security.user.password}
+        username: nikita
+        password: 123
+
+  security:
+    user:
+      name: papa
+      password: doti
+
+#server:
+#  port: 0
+
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/
+##      , http://localhost:8762/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    env:
+      post:
+        enabled: true
+

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Taco Cloud</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+</head>
+
+<body>
+Add new user
+
+<span class="validationError"
+      th:if="${successfulMessage}"
+      th:object="${successfulMessage}"> Text about user existence </span>
+
+<form th:method="POST" th:action="@{/registration}" th:object="${newlyCoinedUser}">
+    <div>
+        <label>User name:</label>
+        <input type="text" name="username" th:field="*{username}"/>
+    </div>
+    <div>
+        <label>User password:</label>
+        <input type="password" name="userpassword" th:field="*{password}"/>
+    </div>
+
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    <div>
+        <input type="submit" value="Sing in"/>
+    </div>
+</form>
+</body>
+</html>
+
